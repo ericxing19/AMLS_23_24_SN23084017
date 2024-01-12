@@ -117,5 +117,7 @@ data_setB = [train_loader, val_loader, test_loader, test_tensor_X, test_tensor_y
 
 # the first hyper-parameter: model name should be 'CNN', 'CNN2' or 'CNN3', which are corresponding to the models in modelA and modelB !!!!!!!!!!!!!!!!!!
 # you can customize l2_lambda, lr, lr_decay_rate
-main_A('CNN2', data_setA)
+
+main_A('CNN2', data_setA, lr = 0.0002)
+# main_A('CNN', data_setA, lr = 0.00015)
 main_B('CNN2', data_setB)
