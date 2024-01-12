@@ -1,11 +1,15 @@
 from A.modelA import main_A
+# from A.modelA import main_read
 from B.modelB import main_B
+from B.modelB import main_read_B
+from B.modelB import *
 import sklearn
 import os
 import torch
 from sklearn.preprocessing import OneHotEncoder
 import numpy as np
 from torch.utils.data import TensorDataset, DataLoader
+
 
 # Task A data processing
 # Get the data path
@@ -115,9 +119,17 @@ print(test_tensor_X.shape)
 
 data_setB = [train_loader, val_loader, test_loader, test_tensor_X, test_tensor_y]
 
+# You can choose one model below to try (It costs a lot of time)
 # the first hyper-parameter: model name should be 'CNN', 'CNN2' or 'CNN3', which are corresponding to the models in modelA and modelB !!!!!!!!!!!!!!!!!!
 # you can customize l2_lambda, lr, lr_decay_rate
-
 main_A('CNN2', data_setA, lr = 0.0002)
 # main_A('CNN', data_setA, lr = 0.00015)
-main_B('CNN2', data_setB)
+# main_B('CNN2', data_setB)
+
+
+# path of CNN_model for taskB
+taskB_CNN2_model_path = os.path.abspath(os.path.join(current_directory, 'B/CNN2_best_model.pth'))
+taskB_CNN_model_path = os.path.abspath(os.path.join(current_directory, 'B/CNN_best_model.pth'))
+# choose the model you want to predict the test set, it will show the accuracy of the model on the test set. 
+main_read_B(taskB_CNN_model_path, data_setB[2])
+

@@ -84,6 +84,7 @@ class CNN3(nn.Module):
         x = self.fc2(x)
         return x
     
+# Whole training process
 def train_and_evaluate(model, train_loader, loss_criterion, optimizer, num_epoch, val_loader,scheduler, test_loader):
     # stop condition
     best_validation_loss = float('inf')
@@ -178,7 +179,7 @@ def get_confusion_matrix(model, X, y, lr):
     plt.show()
     
     
-
+# plot train_loss and validation loss
 def plot_metrics(train_losses, train_accuracies, test_losses, test_accuracies, lr, epoch_num):
     plt.figure(figsize=(14, 8))
     plt.subplot(1, 2, 1)
@@ -226,6 +227,7 @@ def TaskB(data_set, model, lr, lr_decay, l2_lambda, lr_decay_rate, epoch_num):
     print('loss: ', test_loss)
     return model, accuracy
 
+# predict the testset using CNN 
 def main_B(model_name, data_set, lr = 0.0001, lr_decay = False, l2_lambda = 0.02, lr_decay_rate = 0.1):
     best_accuracy = 0
     for i in range(0,3):
@@ -242,3 +244,8 @@ def main_B(model_name, data_set, lr = 0.0001, lr_decay = False, l2_lambda = 0.02
             best_model = model
     print(f'{model_name}_best_accuracy: ', best_accuracy)
     # torch.save(best_model, f'{model_name}_best_model.pth')
+
+# predict the testset using the saved model 
+def main_read_B(model_dict_path, test_loader):
+    model = torch.load(model_dict_path)
+    predict(model, test_loader, 30, 'test', loss_criterion = nn.CrossEntropyLoss())
