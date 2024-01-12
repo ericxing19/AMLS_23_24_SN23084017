@@ -1,6 +1,6 @@
 # AMLS_assignment23_24-
 
-This is a ucl project completed by ruowei xing
+This is a ucl project completed by SN: 23084017
 
 You must install all the packages referred to below:
 numpy,
