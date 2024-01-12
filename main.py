@@ -115,7 +115,7 @@ print(test_tensor_X.shape)
 
 data_setB = [train_loader, val_loader, test_loader, test_tensor_X, test_tensor_y]
 
-
-# l2_lambda, lr, lr_decay_rate
+# the first hyper-parameter: model name should be 'CNN', 'CNN2' or 'CNN3', which are corresponding to the models in modelA and modelB !!!!!!!!!!!!!!!!!!
+# you can customize l2_lambda, lr, lr_decay_rate
 main_A('CNN2', data_setA)
 main_B('CNN2', data_setB)
