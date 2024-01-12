@@ -90,6 +90,7 @@ class CNN3(nn.Module):
         return x
 
 
+# Whole training process
 def train_and_evaluate(model, train_loader, loss_criterion, optimizer, num_epoch, val_loader,scheduler, test_loader):
     # stop condition
     best_validation_loss = float('inf')
@@ -199,7 +200,7 @@ def get_confusion_matrix(model, X, y, lr):
     print('F1 score: ', f1_score)
     
     
-
+# plot train_loss and validation loss
 def plot_metrics(train_losses, train_accuracies, test_losses, test_accuracies, lr, epoch_num):
     plt.figure(figsize=(12, 8))
     plt.title(f'lr:{lr}')
