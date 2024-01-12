@@ -16,6 +16,8 @@ os,
 
 python version used is  3.10.13
 
+Dataset needs to be downloaded from website, whose file format is '.npz'
+
 You can use main.py to run the modelA and modelB by using main_A() and main_B() function. 
 The parameter in this function is:
 
