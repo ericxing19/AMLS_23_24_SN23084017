@@ -56,19 +56,19 @@ class CNN(nn.Module):
 class CNN2(nn.Module):
     def __init__(self):
         super(CNN2, self).__init__()
-        self.conv1 = nn.Conv2d(in_channels=1, out_channels=8, kernel_size=3, padding=1)
+        self.conv1 = nn.Conv2d(in_channels=1, out_channels=16, kernel_size=3, padding=1)
         self.pool1 = nn.MaxPool2d(kernel_size=2, stride=2)
-        self.conv2 = nn.Conv2d(in_channels=8, out_channels=16, kernel_size=3, padding=1)
+        self.conv2 = nn.Conv2d(in_channels=16, out_channels=32, kernel_size=3, padding=1)
         self.pool2 = nn.MaxPool2d(kernel_size=2, stride=2)
-        self.conv3 = nn.Conv2d(in_channels=16, out_channels=16, kernel_size=3, padding=1)
-        self.fc1 = nn.Linear(16 * 7 * 7, 64)
+        self.conv3 = nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3, padding=1)
+        self.fc1 = nn.Linear(64 * 7 * 7, 64)
         self.fc2 = nn.Linear(64, 2)
         
     def forward(self, x):
         x = self.pool1(torch.relu(self.conv1(x)))
         x = self.pool2(torch.relu(self.conv2(x)))
         x = torch.relu(self.conv3(x))
-        x = x.reshape(-1, 16 * 7 * 7)
+        x = x.reshape(-1, 64 * 7 * 7)
         x = torch.relu(self.fc1(x))
         x = self.fc2(x)
         return x
